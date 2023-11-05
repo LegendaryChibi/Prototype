@@ -5,13 +5,13 @@ public class DeadState : FSMState
 {
     private bool deathStarted = false;
 
-    private AssasinControllerAI assasin;
+    private AssassinControllerAI assassin;
 
     //Constructor
-    public DeadState(AssasinControllerAI controller)
+    public DeadState(AssassinControllerAI controller)
     {
         stateID = FSMStateID.Dead;
-        assasin = controller;
+        assassin = controller;
         curSpeed = 0.0f;
         curRotSpeed = 0.0f;
     }
@@ -26,7 +26,7 @@ public class DeadState : FSMState
     {
         if (!deathStarted)
         {
-            assasin.StartDeath();
+            assassin.StartDeath();
         }
     }
 }

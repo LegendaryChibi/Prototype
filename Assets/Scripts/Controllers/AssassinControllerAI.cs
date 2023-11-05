@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.ComponentModel;
 
 [System.Serializable]
 public abstract class AIProperties
@@ -17,11 +17,6 @@ public class ChaseAIProperties : AIProperties
 {
     
 }
-[System.Serializable]
-public class ShootAIProperties : AIProperties
-{
-
-}
 
 [System.Serializable]
 public class MeleeAIProperties : AIProperties
@@ -35,7 +30,7 @@ public class IdleAIProperties : AIProperties
 
 }
 
-public class AssasinControllerAI : AdvancedFSM
+public class AssassinControllerAI : AdvancedFSM
 {
     [SerializeField]
     private bool debugDraw;
@@ -50,13 +45,12 @@ public class AssasinControllerAI : AdvancedFSM
     private ChaseAIProperties chaseAIProperties;
 
     [SerializeField]
-    private ShootAIProperties shootAIProperties;
-
-    [SerializeField]
     private MeleeAIProperties meleeAIProperties;
 
     [SerializeField]
     private IdleAIProperties idleAIProperties;
+
+    public Animator animator;
 
     private float health;
     public float Health
@@ -107,8 +101,8 @@ public class AssasinControllerAI : AdvancedFSM
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }
-        StateText.text = "ASSASIN STATE IS: " + GetStateString();
-        HealthText.text = "ASSASIN HEALTH IS: " + Health;
+        StateText.text = "ASSASSIN STATE IS: " + GetStateString();
+        HealthText.text = "ASSASSIN HEALTH IS: " + Health;
 
         if (debugDraw)
         {
@@ -130,7 +124,7 @@ public class AssasinControllerAI : AdvancedFSM
         //add transitions OUT of the idle state
 
         idleState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
-        idleState.AddTransition(Transition.Agrovated, FSMStateID.Chasing);
+        idleState.AddTransition(Transition.Aggravated, FSMStateID.Chasing);
 
         //Create Chase state
 
@@ -146,7 +140,7 @@ public class AssasinControllerAI : AdvancedFSM
 
         //add transitions OUT of the melee state
         meleeState.AddTransition(Transition.NoHealth, FSMStateID.Dead);
-        meleeState.AddTransition(Transition.Agrovated, FSMStateID.Chasing);
+        meleeState.AddTransition(Transition.Aggravated, FSMStateID.Chasing);
 
         //Create the Dead state
         DeadState deadState = new DeadState(this);
@@ -167,23 +161,24 @@ public class AssasinControllerAI : AdvancedFSM
 
     IEnumerator Death()
     {
-        Renderer r = GetComponent<Renderer>();
-        r.enabled = false;
+        //Play death animation and destroy
+        animator.SetTrigger("Death");
 
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
     }
 
     public void ChasePlayer(Vector3 moveVector)
     {
-        //Get vector and move assasin
+        //Get vector and move assassin
         Vector3 position = transform.position + moveVector * chaseAIProperties.speed * Time.deltaTime;
         rb.MovePosition(position);
     }
 
     public Vector3 GetAimDirection()
     {
+        //Return vector aiming at the player
         Vector3 aimDir = playerTransform.position - this.transform.position;
         aimDir.y = 0;
         return aimDir;
@@ -191,6 +186,7 @@ public class AssasinControllerAI : AdvancedFSM
 
     public float DistToPlayer()
     {
+        //return the distance to the player
         float dist = Vector3.Distance(this.transform.position, playerTransform.position);
         return dist;
     }

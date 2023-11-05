@@ -5,17 +5,17 @@ using UnityEditor.Experimental.GraphView;
 public class ChaseState : FSMState
 {
     private ChaseAIProperties chaseAIProperties;
-    private AssasinControllerAI assasin;
+    private AssassinControllerAI assassin;
     bool moving;
     private Vector3 dir;
 
     //Constructor
-    public ChaseState(AssasinControllerAI controller, ChaseAIProperties chaseAIProperties, Transform trans, Transform playerTransform)
+    public ChaseState(AssassinControllerAI controller, ChaseAIProperties chaseAIProperties, Transform trans, Transform playerTransform)
     {
         this.chaseAIProperties = chaseAIProperties;
-        assasin = controller;
+        assassin = controller;
         stateID = FSMStateID.Chasing;
-        assasin = controller;
+        assassin = controller;
         curSpeed = chaseAIProperties.speed;
         destPos = playerTransform.position - trans.position;
         moving = true;
@@ -25,16 +25,16 @@ public class ChaseState : FSMState
     public override void Reason(Transform player, Transform npc)
     {
         //Check if Assasin has died
-        if (assasin.Health == 0)
+        if (assassin.Health == 0)
         {
-            assasin.PerformTransition(Transition.NoHealth);
+            assassin.PerformTransition(Transition.NoHealth);
             return;
         }
 
         //If player gets close enough in range, attack them
-        if (assasin.DistToPlayer() < chaseAIProperties.chaseDistance)
+        if (assassin.DistToPlayer() < chaseAIProperties.chaseDistance)
         {
-            assasin.PerformTransition(Transition.InRange);
+            assassin.PerformTransition(Transition.InRange);
         }
     }
 
@@ -43,10 +43,14 @@ public class ChaseState : FSMState
     {
         if (moving)
         {
-            dir = assasin.GetAimDirection().normalized;
-            assasin.rb.MoveRotation(Quaternion.LookRotation(dir));
-            assasin.ChasePlayer(dir);
-
+            //Play chase animation
+            assassin.animator.SetTrigger("Chase");
+            //Get position of the player
+            dir = assassin.GetAimDirection().normalized;
+            //Look at the player
+            assassin.rb.MoveRotation(Quaternion.LookRotation(dir));
+            //Move towards the player
+            assassin.ChasePlayer(dir);
         }
     }
 }

@@ -14,7 +14,7 @@ public enum Transition
 {
     None = 0,
     NoHealth,
-    Agrovated,
+    Aggravated,
     InRange
 }
 
