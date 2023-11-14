@@ -8,7 +8,7 @@ TagManager:
   - Barrier
   - PlayerSword
   - Bullet
-  - Assasin
+  - Assassin
   layers:
   - Default
   - TransparentFX

@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 218392475}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Assasin
+  m_TagString: Assassin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7923cd7656b9b474881f8efb3eb6574b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assasin: {fileID: 1643274629}
+  assassin: {fileID: 0}
 --- !u!1 &279307009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7018590992582171656, guid: 25fbed9f0ca9a93499b4e514eb348c31, type: 3}
       propertyPath: m_TagString
-      value: Assasin
+      value: Assassin
       objectReference: {fileID: 0}
     - target: {fileID: 9094717303670539317, guid: 25fbed9f0ca9a93499b4e514eb348c31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1351,7 +1351,7 @@ GameObject:
   - component: {fileID: 1643274633}
   m_Layer: 0
   m_Name: Assasin
-  m_TagString: Assasin
+  m_TagString: Assassin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
