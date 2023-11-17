@@ -101,13 +101,13 @@ public class AssassinControllerAI : AdvancedFSM
             CurrentState.Reason(playerTransform, transform);
             CurrentState.Act(playerTransform, transform);
         }
-        StateText.text = "ASSASSIN STATE IS: " + GetStateString();
+/*        StateText.text = "ASSASSIN STATE IS: " + GetStateString();
         HealthText.text = "ASSASSIN HEALTH IS: " + Health;
 
         if (debugDraw)
         {
             Debug.DrawRay(transform.position, transform.forward * 5.0f, Color.red);
-        }
+        }*/
     }
 
 
