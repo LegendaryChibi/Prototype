@@ -57,6 +57,13 @@ public class AssassinControllerAI : AdvancedFSM
     {
         get { return health; }
     }
+
+    bool isDead = false;
+    public bool IsDead
+    {
+        get { return isDead; }
+    }
+
     public void DecHealth(float amount) { health = Mathf.Max(0, health - amount); }
     public void AddHealth(float amount) { health = Mathf.Min(100, health + amount); }
 
@@ -87,9 +94,10 @@ public class AssassinControllerAI : AdvancedFSM
     protected override void Initialize()
     {
         Debug.Log("initialized");
-        GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+        GameObject objPlayer = GameManager.Player;
         playerTransform = objPlayer.transform;
         health = 100;
+        LevelManager.Instance.ResisterEnemy(this);
         ConstructFSM();
     }
 
@@ -166,6 +174,7 @@ public class AssassinControllerAI : AdvancedFSM
 
         yield return new WaitForSeconds(1f);
 
+        isDead = true;
         Destroy(gameObject);
     }
 

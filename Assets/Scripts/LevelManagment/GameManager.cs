@@ -26,9 +26,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
-    public GameObject Player
+    public static GameObject Player
     {
-        get { return player; }
+        get { return instance.player; }
     }
 
     [SerializeField]
@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour
         currentLevelName = levelName;
 
         //Initialize
-        player.transform.position = Vector3.zero;
+        player.transform.position = LevelManager.Instance.GetSpawnPoint().position;
+        player.transform.rotation = LevelManager.Instance.GetSpawnPoint().rotation;
         player.SetActive(true);
         isLoading = false;
     }
