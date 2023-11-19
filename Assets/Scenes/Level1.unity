@@ -1060,6 +1060,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2464094648437727233, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3439850740739736316, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
       propertyPath: m_Name
       value: Assasin
