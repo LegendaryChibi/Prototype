@@ -13,7 +13,7 @@ public class DamageAssassin : MonoBehaviour
         AssassinControllerAI assassin = other.GetComponent<AssassinControllerAI>();
         if (assassin)
         {
-            assassin.DecHealth(attackPower/2);
+            assassin.DecHealth(attackPower);
         }
     }
 }
