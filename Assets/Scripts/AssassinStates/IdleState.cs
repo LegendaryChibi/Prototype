@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
-using System.Threading;
 
 public class IdleState : FSMState
 {

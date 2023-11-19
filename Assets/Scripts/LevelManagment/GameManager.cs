@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string[] levelNames;
 
-    private bool isLoading = false;
     private int currentLevel = 0;
     private string currentLevelName;
 
@@ -57,7 +56,6 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadLevel(string levelName)
     {
-        isLoading = true;
         player.SetActive(false);
         //Unload Current Scene
         if(!string.IsNullOrEmpty(currentLevelName))
@@ -83,7 +81,6 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = LevelManager.Instance.GetSpawnPoint().rotation;
         player.SetActive(true);
         spawnEffect.Play();
-        isLoading = false;
     }
 
     public void LevelComplete()

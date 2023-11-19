@@ -488,7 +488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 2572775947918464650, guid: 06c1c4e29f0c4144e8db2246b3794a1a, type: 3}
-  pooledAmount: 20
+  pooledAmount: 10
   willGrow: 1
   pooledObjects: []
 --- !u!1 &764336088
