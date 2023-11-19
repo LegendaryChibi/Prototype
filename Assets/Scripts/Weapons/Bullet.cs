@@ -9,6 +9,16 @@ public class Bullet : MonoBehaviour
 
     private Vector3 direction;
 
+    private void OnEnable()
+    {
+        StartCoroutine(SelfDestruct());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private void Update()
     {
         //Move bullet
@@ -26,11 +36,17 @@ public class Bullet : MonoBehaviour
         //Destory if wall is hit.
         if (other.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
         if (other.CompareTag("Assassin"))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+
+    private IEnumerator SelfDestruct()
+    {
+        yield return new WaitForSeconds(10f);
+        gameObject.SetActive(false); ;
     }
 }

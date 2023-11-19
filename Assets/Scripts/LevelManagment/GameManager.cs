@@ -38,6 +38,9 @@ public class GameManager : MonoBehaviour
     private int currentLevel = 0;
     private string currentLevelName;
 
+    [SerializeField]
+    private ParticleSystem spawnEffect;
+
     private void Awake()
     {
         if(instance == null)
@@ -79,6 +82,7 @@ public class GameManager : MonoBehaviour
         player.transform.position = LevelManager.Instance.GetSpawnPoint().position;
         player.transform.rotation = LevelManager.Instance.GetSpawnPoint().rotation;
         player.SetActive(true);
+        spawnEffect.Play();
         isLoading = false;
     }
 

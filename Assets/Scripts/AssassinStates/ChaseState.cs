@@ -7,6 +7,7 @@ public class ChaseState : FSMState
     private ChaseAIProperties chaseAIProperties;
     private AssassinControllerAI assassin;
     bool moving;
+    bool effectStarted;
     private Vector3 dir;
 
     //Constructor
@@ -19,6 +20,7 @@ public class ChaseState : FSMState
         curSpeed = chaseAIProperties.speed;
         destPos = playerTransform.position - trans.position;
         moving = true;
+        effectStarted = false;
     }
 
     //Reason
@@ -34,6 +36,8 @@ public class ChaseState : FSMState
         //If player gets close enough in range, attack them
         if (assassin.DistToPlayer() < chaseAIProperties.chaseDistance)
         {
+            assassin.chaseEffect.Stop();
+            effectStarted = false;
             assassin.PerformTransition(Transition.InRange);
         }
     }
@@ -43,6 +47,12 @@ public class ChaseState : FSMState
     {
         if (moving)
         {
+            if (!effectStarted)
+            {
+                //Play chase effect
+                assassin.chaseEffect.Play();
+                effectStarted = true;
+            }
             //Play chase animation
             assassin.animator.SetTrigger("Chase");
             //Get position of the player

@@ -15,7 +15,7 @@ public abstract class AIProperties
 [System.Serializable]   
 public class ChaseAIProperties : AIProperties
 {
-    
+
 }
 
 [System.Serializable]
@@ -51,6 +51,8 @@ public class AssassinControllerAI : AdvancedFSM
     private IdleAIProperties idleAIProperties;
 
     public Animator animator;
+
+    public ParticleSystem chaseEffect;
 
     private float health;
     public float Health

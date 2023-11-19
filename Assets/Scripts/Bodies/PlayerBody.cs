@@ -40,6 +40,8 @@ public class PlayerBody : MonoBehaviour
 
     private Rigidbody rb;
 
+    [SerializeField]
+    private ParticleSystem rifleBurstEffect;
 
     private void Awake()
     {
@@ -105,7 +107,14 @@ public class PlayerBody : MonoBehaviour
             direction.y = 0f;
             direction.Normalize();
             //Instantiate the bullet, fire it, then set the Fireshot to true to add a .5 second delay before next shot.
-            GameObject bulletFired = GameObject.Instantiate(Bullet, fireLocation.position, Quaternion.identity);
+
+            //GameObject bulletFired = GameObject.Instantiate(Bullet, fireLocation.position, Quaternion.identity);
+
+            GameObject bulletFired = ObjectPoolManager.Instance.GetPooledObject(ObjectPoolManager.PoolTypes.Bullet);
+            bulletFired.transform.position = fireLocation.position;
+            bulletFired.transform.rotation = Quaternion.identity;
+            rifleBurstEffect.Play();
+
             Bullet bullet = bulletFired.GetComponent<Bullet>();
             bulletFired.SetActive(true);
             bullet.Fire(direction);
