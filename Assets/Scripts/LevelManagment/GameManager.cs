@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string[] levelNames;
 
+    [SerializeField]
+    private string mainMenuName;
+
+    [SerializeField]
+    private LoadingScreen loadingScreen;
+
     private int currentLevel = 0;
     private string currentLevelName;
 
@@ -51,12 +57,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("LoadLevel", levelNames[0]);
+        ReturnToMainMenu();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        StartCoroutine("LoadLevel", mainMenuName);
     }
 
     private IEnumerator LoadLevel(string levelName)
     {
         player.SetActive(false);
+        loadingScreen.gameObject.SetActive(true);
+        yield return new WaitForSeconds(.25f);
+
         //Unload Current Scene
         if(!string.IsNullOrEmpty(currentLevelName))
         {
@@ -71,6 +85,7 @@ public class GameManager : MonoBehaviour
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
+            loadingScreen.UpdateSlider(asyncLoad.progress);
             yield return null;
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
@@ -90,5 +105,10 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(LoadLevel(levelNames[currentLevel]));
         }
+    }
+
+    public void StartNewGame()
+    {
+        StartCoroutine("LoadLevel", levelNames[currentLevel]);
     }
 }
