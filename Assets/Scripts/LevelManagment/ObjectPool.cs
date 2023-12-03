@@ -63,4 +63,12 @@ public class ObjectPool : MonoBehaviour
 
         return null;
     }
+
+    public void GameReset()
+    {
+        for(int i = 0; i < pooledObjects.Count; i++)
+        {
+            pooledObjects[i].SetActive(false);
+        }
+    }
 }

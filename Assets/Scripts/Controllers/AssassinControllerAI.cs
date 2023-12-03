@@ -103,6 +103,11 @@ public class AssassinControllerAI : AdvancedFSM
         ConstructFSM();
     }
 
+    public void Reset()
+    {
+        isDead = false;
+    }
+
     protected override void FSMUpdate()
     {
 

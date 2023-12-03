@@ -29,4 +29,12 @@ public class ObjectPoolManager : MonoBehaviour
     {
         return objectPools[(int)type].GetPooledObject();
     }
+
+    public void GameReset()
+    {
+        for(int i = 0; i < objectPools.Length; i++)
+        {
+            objectPools[i].GameReset();
+        }
+    }
 }

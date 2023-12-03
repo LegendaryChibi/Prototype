@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField]
+    private PlayerBody body;
+
+    [SerializeField]
     private string[] levelNames;
 
     [SerializeField]
@@ -46,12 +49,20 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ParticleSystem spawnEffect;
 
+    [SerializeField]
+    private PauseMenu pauseMenu;
+
+    [SerializeField]
+    private GameOverScreen gameOverScreen;
+
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
         }
+
+        gameOverScreen.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -62,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        pauseMenu.CanPause = false;
         StartCoroutine("LoadLevel", mainMenuName);
     }
 
@@ -69,12 +81,14 @@ public class GameManager : MonoBehaviour
     {
         player.SetActive(false);
         loadingScreen.gameObject.SetActive(true);
+        pauseMenu.CanPause = false;
         yield return new WaitForSeconds(.25f);
 
         //Unload Current Scene
         if(!string.IsNullOrEmpty(currentLevelName))
         {
             AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(currentLevelName);
+            yield return AudioManager.Instance.UnloadLevel();
             while(!asyncUnload.isDone)
             {
                 yield return null;
@@ -90,7 +104,9 @@ public class GameManager : MonoBehaviour
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(levelName));
         currentLevelName = levelName;
-
+        AudioManager.LoadLevelComplete();
+        loadingScreen.gameObject.SetActive(false);
+        pauseMenu.CanPause = true;
         //Initialize
         player.transform.position = LevelManager.Instance.GetSpawnPoint().position;
         player.transform.rotation = LevelManager.Instance.GetSpawnPoint().rotation;
@@ -110,5 +126,22 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         StartCoroutine("LoadLevel", levelNames[currentLevel]);
+    }
+
+    public void PlayerDeath()
+    {
+        pauseMenu.CanPause = false;
+        gameOverScreen.gameObject.SetActive(true);
+    }
+
+    public void PlayerRespawn()
+    {
+        player.transform.position = LevelManager.Instance.GetSpawnPoint().position;
+        player.transform.rotation = LevelManager.Instance.GetSpawnPoint().rotation;
+        body.GameReset();
+        LevelManager.Instance.Reset();
+        ObjectPoolManager.Instance.GameReset();
+        player.SetActive(true);
+        gameOverScreen.gameObject.SetActive(false);
     }
 }

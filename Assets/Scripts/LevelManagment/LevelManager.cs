@@ -32,6 +32,14 @@ public class LevelManager : MonoBehaviour
     private Color startColor;
     private Color endColor;
 
+    [SerializeField]
+    private AudioClip levelMusic;
+
+    public AudioClip LevelMusic
+    {
+        get { return instance.levelMusic; }
+    }
+
     private void Awake()
     {
         if (instance == null)
@@ -88,5 +96,12 @@ public class LevelManager : MonoBehaviour
         return spawnPoint;
     }
 
-   
+    public void Reset()
+    {
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].Reset();
+        }
+    }
+
 }

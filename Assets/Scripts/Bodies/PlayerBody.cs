@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerBody : MonoBehaviour
 {
@@ -34,6 +31,10 @@ public class PlayerBody : MonoBehaviour
     private PlayerController controller;
 
     [SerializeField]
+    private float maxHealth = 100f;
+    private float health;
+
+    [SerializeField]
     private float movementSpeed = 5f;
 
     private Vector3 moveVector;
@@ -43,16 +44,28 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private ParticleSystem rifleBurstEffect;
 
+    [SerializeField]
+    private PlayerSounds PlayerSounds;
+
+    bool hit = false;
+
     private void Awake()
     {
         //Find the firing location and initialize the rigidbody
         fireLocation = Gun.Find("FireLocation");
         rb = GetComponent<Rigidbody>();
         Debug.Assert(controller != null, "Missing controller on " + gameObject.name);
+        health = maxHealth;
+    }
+
+    public void GameReset()
+    {
+        health = maxHealth;
     }
 
     private void Update()
     {
+        Debug.Log(health);
         if (controller.Gunshot)
         {
             StartCoroutine(FireShot());
@@ -97,6 +110,36 @@ public class PlayerBody : MonoBehaviour
         }
     }
 
+    public void Damaged()
+    {
+        if (health - 25 > 0)
+        {
+            health -= 25;
+        }
+        else
+        {
+            health = 0;
+            Death();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("AssassinSword") && !hit)
+        {
+            Damaged();
+            hit = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("AssassinSword"))
+        {
+            hit = false;
+        }
+    }
+
     IEnumerator FireShot()
     {
         //If bullet exists and shot hasn't been fired since last interval, run.
@@ -114,6 +157,7 @@ public class PlayerBody : MonoBehaviour
             bulletFired.transform.position = fireLocation.position;
             bulletFired.transform.rotation = Quaternion.identity;
             rifleBurstEffect.Play();
+            PlayerSounds.FireGun();
 
             Bullet bullet = bulletFired.GetComponent<Bullet>();
             bulletFired.SetActive(true);
@@ -147,6 +191,11 @@ public class PlayerBody : MonoBehaviour
             Barrier barrierGo = barrierActivated.GetComponent<Barrier>();
             barrierActivated.SetActive(true);
         }
+    }
+
+    private void Death()
+    {
+        GameManager.Instance.PlayerDeath();
     }
 }
 

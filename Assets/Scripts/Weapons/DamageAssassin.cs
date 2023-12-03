@@ -7,7 +7,7 @@ public class DamageAssassin : MonoBehaviour
     [SerializeField]
     private int attackPower = 25;
 
-    //If attacted object touches the assasin, damage them
+    //If attackted object touches the assasin, damage them
     private void OnTriggerEnter(Collider other)
     {
         AssassinControllerAI assassin = other.GetComponent<AssassinControllerAI>();
