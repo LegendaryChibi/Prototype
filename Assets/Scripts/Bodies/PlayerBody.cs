@@ -200,5 +200,3 @@ public class PlayerBody : MonoBehaviour
         GameManager.Instance.PlayerDeath();
     }
 }
-
-

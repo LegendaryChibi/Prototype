@@ -350,6 +350,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1580024852400095128, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
+      propertyPath: enemyPosition
+      value: 
+      objectReference: {fileID: 891871857}
     - target: {fileID: 2464094648437727233, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
       propertyPath: m_TagString
       value: AssassinSword
@@ -513,6 +517,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &835747745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 835747746}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &835747746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835747745}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.735775, z: 0, w: 0.67722607}
+  m_LocalPosition: {x: -8.87, y: 0, z: -2.58}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &863650046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -570,6 +605,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93cff5f063592894d9f5cf21e5b008bc, type: 3}
+--- !u!1 &891871856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 891871857}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &891871857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891871856}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.32646734, z: 0, w: 0.9452085}
+  m_LocalPosition: {x: -5.69, y: 0, z: -7.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1238,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1580024852400095128, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
+      propertyPath: enemyPosition
+      value: 
+      objectReference: {fileID: 835747746}
     - target: {fileID: 2464094648437727233, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
       propertyPath: m_TagString
       value: AssassinSword
@@ -1315,3 +1385,5 @@ SceneRoots:
   - {fileID: 4793833653502113634}
   - {fileID: 1518509415}
   - {fileID: 863650046}
+  - {fileID: 835747746}
+  - {fileID: 891871857}

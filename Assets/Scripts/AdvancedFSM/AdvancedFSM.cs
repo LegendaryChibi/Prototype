@@ -15,7 +15,8 @@ public enum Transition
     None = 0,
     NoHealth,
     Aggravated,
-    InRange
+    InRange,
+    Reset
 }
 
 public enum FSMStateID

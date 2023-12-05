@@ -31,7 +31,6 @@ public class IdleState : FSMState
         {
             assassin.PerformTransition(Transition.Aggravated);
         }
-
     }
 
     //Act

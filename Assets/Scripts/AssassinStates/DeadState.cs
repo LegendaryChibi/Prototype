@@ -19,6 +19,7 @@ public class DeadState : FSMState
     //Reason
     public override void Reason(Transform player, Transform npc)
     {
+        assassin.PerformTransition(Transition.Reset);
     }
 
     //Act

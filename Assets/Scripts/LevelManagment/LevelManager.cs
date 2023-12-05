@@ -67,7 +67,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void ResisterEnemy(AssassinControllerAI assasin)
+    public void RegisterEnemy(AssassinControllerAI assasin)
     {
         enemies.Add(assasin);
     }

@@ -334,6 +334,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &266361279
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266361280}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266361280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266361279}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.80537254, z: 0, w: 0.592769}
+  m_LocalPosition: {x: -8.68, y: 0, z: -6.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &340594587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,6 +381,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1580024852400095128, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
+      propertyPath: enemyPosition
+      value: 
+      objectReference: {fileID: 1498004907}
     - target: {fileID: 2464094648437727233, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
       propertyPath: m_TagString
       value: AssassinSword
@@ -605,6 +640,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 72.11, y: 0, z: 0}
+--- !u!1 &1319363507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319363508}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1319363508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319363507}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.9687847, z: 0, w: 0.2479038}
+  m_LocalPosition: {x: -4.32, y: 0, z: -0.86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497400398
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +793,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goalRenderer: {fileID: 1497400400}
   levelMusic: {fileID: 8300000, guid: 41ad7789cb216bd4685f04a90334099c, type: 3}
+--- !u!1 &1498004906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498004907}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1498004907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498004906}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.46965852, z: 0, w: 0.8828482}
+  m_LocalPosition: {x: -4.8, y: 0, z: -4.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1518509415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -905,6 +1002,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1580024852400095128, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
+      propertyPath: enemyPosition
+      value: 
+      objectReference: {fileID: 1319363508}
     - target: {fileID: 2464094648437727233, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
       propertyPath: m_TagString
       value: AssassinSword
@@ -1200,6 +1301,10 @@ PrefabInstance:
       propertyPath: HealthText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1580024852400095128, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
+      propertyPath: enemyPosition
+      value: 
+      objectReference: {fileID: 266361280}
     - target: {fileID: 2464094648437727233, guid: 1d11ed4f94e823247b7701eccd08336e, type: 3}
       propertyPath: m_TagString
       value: AssassinSword
@@ -1339,7 +1444,10 @@ SceneRoots:
   - {fileID: 2045156129}
   - {fileID: 2072241846}
   - {fileID: 119843846419904856}
-  - {fileID: 340594587}
   - {fileID: 1910932359}
+  - {fileID: 340594587}
   - {fileID: 4793833653502113634}
   - {fileID: 1518509415}
+  - {fileID: 266361280}
+  - {fileID: 1319363508}
+  - {fileID: 1498004907}

@@ -120,14 +120,17 @@ public class GameManager : MonoBehaviour
         currentLevel++;
         if(currentLevel < levelNames.Length)
         {
+            body.GameReset();
             StartCoroutine(LoadLevel(levelNames[currentLevel]));
         }
+
     }
 
     public void StartNewGame()
     {
+        currentLevel = 0;
         StartCoroutine("LoadLevel", levelNames[currentLevel]);
-        body.Controller.gameObject.SetActive(true);
+        body.GameReset();
         gameOverScreen.gameObject.SetActive(false);
     }
 
@@ -147,5 +150,6 @@ public class GameManager : MonoBehaviour
         ObjectPoolManager.Instance.GameReset();
         player.SetActive(true);
         gameOverScreen.gameObject.SetActive(false);
+        pauseMenu.CanPause = true;
     }
 }

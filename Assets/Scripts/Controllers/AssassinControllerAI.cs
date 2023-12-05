@@ -54,6 +54,9 @@ public class AssassinControllerAI : AdvancedFSM
 
     public ParticleSystem chaseEffect;
 
+    [SerializeField]
+    private Transform enemyPosition;
+
     private float health;
     public float Health
     {
@@ -95,17 +98,20 @@ public class AssassinControllerAI : AdvancedFSM
 
     protected override void Initialize()
     {
-        Debug.Log("initialized");
         GameObject objPlayer = GameManager.Player;
         playerTransform = objPlayer.transform;
         health = 100;
-        LevelManager.Instance.ResisterEnemy(this);
+        LevelManager.Instance.RegisterEnemy(this);
         ConstructFSM();
     }
 
     public void Reset()
     {
         isDead = false;
+        gameObject.transform.position = enemyPosition.position;
+        gameObject.transform.rotation = enemyPosition.rotation;
+        health = 100;
+        gameObject.SetActive(true);
     }
 
     protected override void FSMUpdate()
@@ -160,6 +166,7 @@ public class AssassinControllerAI : AdvancedFSM
         //Create the Dead state
         DeadState deadState = new DeadState(this);
         //there are no transitions out of the dead state
+        deadState.AddTransition(Transition.Reset, FSMStateID.Idle);
 
 
         //Add all states to the state list
@@ -182,7 +189,8 @@ public class AssassinControllerAI : AdvancedFSM
         yield return new WaitForSeconds(1f);
 
         isDead = true;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        gameObject.transform.localScale = Vector3.one;
     }
 
     public void ChasePlayer(Vector3 moveVector)
