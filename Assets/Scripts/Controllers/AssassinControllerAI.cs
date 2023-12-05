@@ -57,6 +57,9 @@ public class AssassinControllerAI : AdvancedFSM
     [SerializeField]
     private Transform enemyPosition;
 
+    [SerializeField]
+    private GameObject body;
+
     private float health;
     public float Health
     {
@@ -190,7 +193,7 @@ public class AssassinControllerAI : AdvancedFSM
 
         isDead = true;
         gameObject.SetActive(false);
-        gameObject.transform.localScale = Vector3.one;
+        body.transform.localScale = Vector3.one;
     }
 
     public void ChasePlayer(Vector3 moveVector)

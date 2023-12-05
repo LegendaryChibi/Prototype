@@ -8,6 +8,7 @@ public class ChaseState : FSMState
     bool moving;
     bool effectStarted;
     private Vector3 dir;
+    private GameObject PlayerController;
 
     //Constructor
     public ChaseState(AssassinControllerAI controller, ChaseAIProperties chaseAIProperties, Transform trans, Transform playerTransform)
@@ -20,6 +21,7 @@ public class ChaseState : FSMState
         destPos = playerTransform.position - trans.position;
         moving = true;
         effectStarted = false;
+        PlayerController = GameObject.Find("PlayerController");
     }
 
     //Reason
@@ -33,7 +35,12 @@ public class ChaseState : FSMState
         }
 
         //If player gets close enough in range, attack them
-        if (assassin.DistToPlayer() < chaseAIProperties.chaseDistance)
+        if (!PlayerController.gameObject.activeInHierarchy)
+        {
+            assassin.PerformTransition(Transition.NoHealth);
+        }
+
+        else if (assassin.DistToPlayer() < chaseAIProperties.chaseDistance)
         {
             assassin.chaseEffect.Stop();
             effectStarted = false;

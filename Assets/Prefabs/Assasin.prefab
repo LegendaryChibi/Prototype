@@ -66,6 +66,8 @@ MonoBehaviour:
     healthRegenRate: 0
   animator: {fileID: 4407300895804047779}
   chaseEffect: {fileID: 2436926201727157061}
+  enemyPosition: {fileID: 0}
+  body: {fileID: 7833733075745021469}
 --- !u!54 &4463869449603011908
 Rigidbody:
   m_ObjectHideFlags: 0

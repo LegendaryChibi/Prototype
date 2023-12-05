@@ -7,6 +7,7 @@ public class MeleeState : FSMState
     private AssassinControllerAI assassin;
     bool heal = true;
     private Vector3 dir;
+    private GameObject PlayerController;
 
     //Constructor
     public MeleeState(AssassinControllerAI controller, MeleeAIProperties meleeAIProperties, Transform trans, Transform playerTransform)
@@ -16,6 +17,7 @@ public class MeleeState : FSMState
         stateID = FSMStateID.Melee;
         assassin = controller;
         destPos = playerTransform.position - trans.position;
+        PlayerController = GameObject.Find("PlayerController");
     }
 
     //Reason
@@ -28,8 +30,12 @@ public class MeleeState : FSMState
             return;
         }
 
-        //If player gets too far to attack, chase them 
-        if (assassin.DistToPlayer() > meleeAIProperties.chaseDistance)
+        //If player gets too far to attack, chase them
+        if (!PlayerController.gameObject.activeInHierarchy)
+        {
+            assassin.PerformTransition(Transition.NoHealth);
+        }
+        else if (assassin.DistToPlayer() > meleeAIProperties.chaseDistance)
         {
             assassin.PerformTransition(Transition.Aggravated);
             heal = true;

@@ -5,6 +5,7 @@ public class IdleState : FSMState
 {
     private IdleAIProperties idleAIProperties;
     private AssassinControllerAI assassin;
+    private GameObject PlayerController;
 
     //Constructor
     public IdleState(AssassinControllerAI controller, IdleAIProperties idleAIProperties, Transform trans, Transform playerTransform)
@@ -14,6 +15,7 @@ public class IdleState : FSMState
         stateID = FSMStateID.Idle;
         assassin = controller;
         destPos = playerTransform.position - trans.position;
+        PlayerController = GameObject.Find("PlayerController");
     }
 
     //Reason
