@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+
     public void NewGame()
     {
         GameManager.Instance.StartNewGame();

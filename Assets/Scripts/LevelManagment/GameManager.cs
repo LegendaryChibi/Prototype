@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         get { return instance.player; }
     }
 
+
     [SerializeField]
     private PlayerBody body;
 
@@ -126,10 +127,13 @@ public class GameManager : MonoBehaviour
     public void StartNewGame()
     {
         StartCoroutine("LoadLevel", levelNames[currentLevel]);
+        body.Controller.gameObject.SetActive(true);
+        gameOverScreen.gameObject.SetActive(false);
     }
 
     public void PlayerDeath()
     {
+        body.Controller.gameObject.SetActive(false);
         pauseMenu.CanPause = false;
         gameOverScreen.gameObject.SetActive(true);
     }

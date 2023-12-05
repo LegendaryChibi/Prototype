@@ -30,6 +30,8 @@ public class PlayerBody : MonoBehaviour
     [SerializeField]
     private PlayerController controller;
 
+    public PlayerController Controller { get { return controller; } }
+
     [SerializeField]
     private float maxHealth = 100f;
     private float health;
@@ -61,11 +63,11 @@ public class PlayerBody : MonoBehaviour
     public void GameReset()
     {
         health = maxHealth;
+        Controller.gameObject.SetActive(true);
     }
 
     private void Update()
     {
-        Debug.Log(health);
         if (controller.Gunshot)
         {
             StartCoroutine(FireShot());
