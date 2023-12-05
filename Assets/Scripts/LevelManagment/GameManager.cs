@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDeath()
     {
         body.Controller.gameObject.SetActive(false);
+        player.SetActive(false);
         pauseMenu.CanPause = false;
         gameOverScreen.gameObject.SetActive(true);
     }

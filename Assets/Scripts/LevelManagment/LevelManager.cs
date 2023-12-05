@@ -98,7 +98,8 @@ public class LevelManager : MonoBehaviour
 
     public void Reset()
     {
-        for(int i = 0; i < enemies.Count; i++)
+        goalMaterial.SetColor("_Color", startColor);
+        for (int i = 0; i < enemies.Count; i++)
         {
             enemies[i].Reset();
         }

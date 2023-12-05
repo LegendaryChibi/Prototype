@@ -188,10 +188,9 @@ public class AssassinControllerAI : AdvancedFSM
     {
         //Play death animation and destroy
         animator.SetTrigger("Death");
-
-        yield return new WaitForSeconds(1f);
-
         isDead = true;
+        yield return new WaitForSeconds(0.4f);
+
         gameObject.SetActive(false);
         body.transform.localScale = Vector3.one;
     }
