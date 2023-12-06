@@ -60,6 +60,11 @@ public class PlayerBody : MonoBehaviour
         health = maxHealth;
     }
 
+    private void OnEnable()
+    {
+        PlayerSounds.Spawn();
+    }
+
     public void GameReset()
     {
         health = maxHealth;

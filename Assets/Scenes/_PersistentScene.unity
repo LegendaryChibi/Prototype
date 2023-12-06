@@ -1154,9 +1154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireClip: {fileID: 8300000, guid: 9f00d885d950f6f40ae7fc2a15182cd1, type: 3}
-  walkFootStepsClip: {fileID: 8300000, guid: 5e3ab342bc3dea84dbf41b7ceaac3433, type: 3}
+  teleportClip: {fileID: 8300000, guid: 14fe55b019b11a54197fb9d0e9d07ecc, type: 3}
   gunAudioSource: {fileID: 1120984958}
-  footStepAudioSource: {fileID: 1513728170}
+  teleportAudioSource: {fileID: 1513728170}
 --- !u!1 &329693783
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,7 +3601,7 @@ GameObject:
   - component: {fileID: 1513728169}
   - component: {fileID: 1513728170}
   m_Layer: 0
-  m_Name: FootStepAudioSource
+  m_Name: TeleportAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

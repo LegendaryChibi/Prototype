@@ -9,13 +9,13 @@ public class PlayerSounds : MonoBehaviour
     AudioClip fireClip;
 
     [SerializeField]
-    AudioClip walkFootStepsClip;
+    AudioClip teleportClip;
 
     [SerializeField]
     AudioSource gunAudioSource;
 
     [SerializeField]
-    AudioSource footStepAudioSource;
+    AudioSource teleportAudioSource;
 
     public void FireGun()
     {
@@ -23,5 +23,11 @@ public class PlayerSounds : MonoBehaviour
         gunAudioSource.clip = fireClip;
         gunAudioSource.pitch = randPitch;
         gunAudioSource.Play();
+    }
+
+    public void Spawn()
+    {
+        teleportAudioSource.clip = teleportClip;
+        teleportAudioSource.Play();
     }
 }
