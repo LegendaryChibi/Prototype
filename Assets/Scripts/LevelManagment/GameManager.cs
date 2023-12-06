@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     private string mainMenuName;
 
     [SerializeField]
+    private string optionsMenuName;
+
+    [SerializeField]
     private LoadingScreen loadingScreen;
 
     private int currentLevel = 0;
@@ -90,6 +93,12 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.CanPause = false;
         StartCoroutine("LoadLevel", mainMenuName);
+    }
+
+    public void OptionsMenu()
+    {
+        pauseMenu.CanPause = false;
+        StartCoroutine("LoadLevel", optionsMenuName);
     }
 
     private IEnumerator LoadLevel(string levelName)
@@ -139,6 +148,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if (File.Exists(saveFilePath))
+            {
+                File.Delete(saveFilePath);
+            }
             victoryScreen.gameObject.SetActive(true);
             player.SetActive(false );
         }
@@ -218,6 +231,3 @@ class SaveGame
 {
     public int CurrentLevel { get; set;}
 }
-
-
-

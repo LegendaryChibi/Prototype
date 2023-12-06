@@ -23,6 +23,11 @@ public class MainMenu : MonoBehaviour
         GameManager.Instance.ContinueGame();
     }
 
+    public void OptionsMenu()
+    {
+        GameManager.Instance.OptionsMenu();
+    }
+
     public void ExitGame()
     {
 #if UNITY_STANDALONE
