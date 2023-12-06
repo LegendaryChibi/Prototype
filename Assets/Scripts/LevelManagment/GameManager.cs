@@ -174,17 +174,15 @@ public class GameManager : MonoBehaviour
         {
             body.GameReset();
             StartCoroutine(LoadLevel(levelNames[currentLevel]));
+            instance.SaveGame();
         }
         else
         {
-            if (File.Exists(saveFilePath))
-            {
-                File.Delete(saveFilePath);
-            }
+            File.Delete(saveFilePath);
+            saveGamePresent = false;
             victoryScreen.gameObject.SetActive(true);
             player.SetActive(false );
         }
-        instance.SaveGame();
     }
 
     public void StartNewGame()
@@ -203,7 +201,9 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
+        HUD.gameObject.SetActive(true);
         body.GameReset();
+        gameOverScreen.gameObject.SetActive(false);
         StartCoroutine("LoadLevel", levelNames[currentLevel]);
     }
 
