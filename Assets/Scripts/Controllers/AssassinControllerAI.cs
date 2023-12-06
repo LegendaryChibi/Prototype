@@ -113,7 +113,8 @@ public class AssassinControllerAI : AdvancedFSM
         isDead = false;
         gameObject.transform.position = enemyPosition.position;
         gameObject.transform.rotation = enemyPosition.rotation;
-        body.gameObject.transform.position = Vector3.zero;
+        body.gameObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        body.gameObject.transform.localScale = Vector3.one;
         health = 100;
         gameObject.SetActive(true);
     }

@@ -3604,6 +3604,7 @@ MonoBehaviour:
   spawnEffect: {fileID: 23678998}
   pauseMenu: {fileID: 966977259}
   gameOverScreen: {fileID: 2139887922}
+  victoryScreen: {fileID: 464900460}
 --- !u!1 &2009401453
 GameObject:
   m_ObjectHideFlags: 0

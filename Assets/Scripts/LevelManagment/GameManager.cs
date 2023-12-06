@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,6 +60,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameOverScreen gameOverScreen;
+
+    [SerializeField]
+    private GameObject victoryScreen;
 
     private bool saveGamePresent = false;
     private string saveFilePath;
@@ -133,6 +137,11 @@ public class GameManager : MonoBehaviour
             body.GameReset();
             StartCoroutine(LoadLevel(levelNames[currentLevel]));
         }
+        else
+        {
+            victoryScreen.gameObject.SetActive(true);
+            player.SetActive(false );
+        }
         instance.SaveGame();
     }
 
@@ -151,6 +160,7 @@ public class GameManager : MonoBehaviour
 
     public void ContinueGame()
     {
+        body.GameReset();
         StartCoroutine("LoadLevel", levelNames[currentLevel]);
     }
 

@@ -24,10 +24,4 @@ public class PlayerSounds : MonoBehaviour
         gunAudioSource.pitch = randPitch;
         gunAudioSource.Play();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
