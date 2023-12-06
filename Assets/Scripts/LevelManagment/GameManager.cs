@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,6 +60,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameOverScreen gameOverScreen;
 
+    private bool saveGamePresent = false;
+    private string saveFilePath;
+    public bool SaveGamePresent { get { return saveGamePresent; } }
+
     private void Awake()
     {
         if(instance == null)
@@ -64,11 +72,13 @@ public class GameManager : MonoBehaviour
         }
 
         gameOverScreen.gameObject.SetActive(false);
+        saveFilePath = Application.persistentDataPath + "/Prototype.dat";
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        instance.LoadGame();
         ReturnToMainMenu();
     }
 
@@ -123,15 +133,25 @@ public class GameManager : MonoBehaviour
             body.GameReset();
             StartCoroutine(LoadLevel(levelNames[currentLevel]));
         }
-
+        instance.SaveGame();
     }
 
     public void StartNewGame()
     {
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+        }
+
         currentLevel = 0;
         StartCoroutine("LoadLevel", levelNames[currentLevel]);
         body.GameReset();
         gameOverScreen.gameObject.SetActive(false);
+    }
+
+    public void ContinueGame()
+    {
+        StartCoroutine("LoadLevel", levelNames[currentLevel]);
     }
 
     public void PlayerDeath()
@@ -153,4 +173,41 @@ public class GameManager : MonoBehaviour
         gameOverScreen.gameObject.SetActive(false);
         pauseMenu.CanPause = true;
     }
+
+    private void SaveGame()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        Debug.Log("Save path " + saveFilePath);
+
+        FileStream file = File.Create(saveFilePath);
+
+        SaveGame data = new SaveGame();
+        data.CurrentLevel = currentLevel;
+
+        bf.Serialize(file, data);
+        file.Close();
+    }
+
+    private void LoadGame()
+    {
+        if (File.Exists(saveFilePath))
+        {
+            saveGamePresent = true;
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(saveFilePath, FileMode.Open);
+            SaveGame data = (SaveGame) bf.Deserialize(file);
+            file.Close();
+
+            currentLevel = data.CurrentLevel;
+        }
+    }
 }
+
+[Serializable]
+class SaveGame
+{
+    public int CurrentLevel { get; set;}
+}
+
+
+

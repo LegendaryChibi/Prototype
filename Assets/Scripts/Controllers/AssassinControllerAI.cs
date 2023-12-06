@@ -113,6 +113,7 @@ public class AssassinControllerAI : AdvancedFSM
         isDead = false;
         gameObject.transform.position = enemyPosition.position;
         gameObject.transform.rotation = enemyPosition.rotation;
+        body.gameObject.transform.position = Vector3.zero;
         health = 100;
         gameObject.SetActive(true);
     }
@@ -192,7 +193,6 @@ public class AssassinControllerAI : AdvancedFSM
         yield return new WaitForSeconds(0.4f);
 
         gameObject.SetActive(false);
-        body.transform.localScale = Vector3.one;
     }
 
     public void ChasePlayer(Vector3 moveVector)

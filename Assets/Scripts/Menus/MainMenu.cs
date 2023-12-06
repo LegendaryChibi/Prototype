@@ -1,9 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    private Button continueButton;
+
+    public void OnEnable()
+    {
+        continueButton.interactable = GameManager.Instance.SaveGamePresent;
+    }
 
     public void NewGame()
     {
@@ -12,7 +20,7 @@ public class MainMenu : MonoBehaviour
     
     public void ContinueGame()
     {
-
+        GameManager.Instance.ContinueGame();
     }
 
     public void ExitGame()
