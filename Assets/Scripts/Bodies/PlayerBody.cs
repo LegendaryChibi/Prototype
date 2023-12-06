@@ -199,4 +199,9 @@ public class PlayerBody : MonoBehaviour
     {
         GameManager.Instance.PlayerDeath();
     }
+
+    public float CurrHealth()
+    {
+        return health;
+    }
 }

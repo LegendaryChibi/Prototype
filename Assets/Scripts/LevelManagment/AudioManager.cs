@@ -60,4 +60,37 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
     }
+
+    public void setMasterVolume(float currvol)
+    {
+        instance.mainMixer.SetFloat("masterVolume", currvol);
+    }
+
+    public void setMusicVolume(float currvol)
+    {
+        instance.mainMixer.SetFloat("musicVolume", currvol);
+    }
+
+    public void setEffectsVolume(float currvol)
+    {
+        instance.mainMixer.SetFloat("effectsVolume", currvol);
+    }
+
+    public float getMasterVolume()
+    {
+        instance.mainMixer.GetFloat("masterVolume", out float x);
+        return x;
+    }
+
+    public float getMusicVolume()
+    {
+        instance.mainMixer.GetFloat("musicVolume", out float x);
+        return x;
+    }
+
+    public float getEffectsVolume()
+    {
+        instance.mainMixer.GetFloat("effectsVolume", out float x);
+        return x;
+    }
 }

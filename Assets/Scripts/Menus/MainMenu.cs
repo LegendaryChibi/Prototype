@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-        GameManager.Instance.OptionsMenu();
+        GameManager.Instance.LoadOptionsMenu();
     }
 
     public void ExitGame()

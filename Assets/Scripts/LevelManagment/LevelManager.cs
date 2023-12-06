@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
             }
             if (!instance)
             {
-                Debug.LogError("No Level Manager Found.");
+                //Debug.LogError("No Level Manager Found.");
             }
 
             return instance;
@@ -88,6 +88,35 @@ public class LevelManager : MonoBehaviour
             retVal = retVal && enemies[i].IsDead;
         }
 
+        return retVal;
+    }
+
+    public int CheckAllEnemiesDeadCount()
+    {
+        int retVal = 0;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            if (enemies[i].IsDead)
+            {
+                retVal++;
+            }
+        }
+
+        return retVal;
+    }
+
+    public int TotalEnemies()
+    {
+        return enemies.Count;
+    }
+
+    public int CheckAllEnemiesHealth()
+    {
+        int retVal = 0;
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            retVal += (int) enemies[i].Health;
+        }
         return retVal;
     }
 
