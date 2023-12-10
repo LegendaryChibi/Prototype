@@ -25,6 +25,6 @@ The Prototype uses a huge amount of systems which include:
 
 ## Purpose
 
-This project is meant to demonstrate my understanding of advenced programming techniques, like making scripts more efficent with the use of object pools instead of dynamic instantiation for example. 
+This project is meant to demonstrate my understanding of advanced programming techniques, like making run time more efficent with the use of object pools instead of dynamic instantiation for example. 
 
 This project is also meant to be demonstration of overall understanding of script and asset management inside an engine. This includes proper references, file structure, editor set up, menus, etc.
