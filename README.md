@@ -1,4 +1,4 @@
-# Prototype
+# The Prototype
 
 ## Summary
 The Prototype is a game where the player must progress between 3 levels with increasing difficulty. The player has the ability to shoot at enemies as well as swing a sword at them for extra damage. Get to the end and you win!
